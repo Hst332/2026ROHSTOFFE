@@ -1,0 +1,52 @@
+name: Daily Forecast
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5'   # 07:00 Wien = 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  forecast:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy yfinance scikit-learn
+
+      - name: Run forecast
+        run: python main.py
+
+      - name: Upload forecast artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: forecast-output
+          path: forecast_output.txt
+          if-no-files-found: error
+          overwrite: true
+
+      - name: Commit forecast output (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add forecast_output.txt
+          git diff --cached --quiet || git commit -m "Update forecast output [skip ci]"
+          git push origin main || true
+
+      - name: Run SILVER Backtest
+        run: python SILVER_BACKTEST.py
+
+      - name: Run GOLD Backtest
+        run: python GOLD_BACKTEST.py
+
+      - name: Run COPPER Backtest
+        run: python COPPER_BACKTEST.py
