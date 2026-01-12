@@ -3,13 +3,14 @@ def forecast_trend(df, days):
     past = float(df["Close"].iloc[-days])
     r = (last - past) / past
 
-    if r > 0.02:
-        return "++"
+
+    if r > 0.015:
+    return "++"
     elif r > 0.005:
-        return "+"
-    elif r < -0.02:
-        return "--"
+    return "+"
+    elif r < -0.015:
+    return "--"
     elif r < -0.005:
-        return "-"
+    return "-"
     else:
-        return "0"
+    return "0"
