@@ -1,14 +1,10 @@
 from forecast_assets import run_all
-from decision_engine import log_decision
+from forecast_writer import write_daily_summary
 
 def main():
     results = run_all()
+    write_daily_summary(results)
 
-    print("\nDECISION TRACE (single source of truth)")
-    print("-" * 80)
-
-    for r in results:
-        log_decision(r["asset"], r["score"])
 
 if __name__ == "__main__":
-    main()
+main()
