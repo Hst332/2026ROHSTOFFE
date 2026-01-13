@@ -35,8 +35,9 @@ def write_daily_summary(results):
             "- Holding period: 5–20 trading days\n"
             "- Leverage: max 3–5\n"
             "- No short positions\n\n"
-            "ChatGPT Prognose 1–5D": gpt_1_5d,
-            "ChatGPT Prognose 2–3W": gpt_2_3w,
+            "ChatGPT Prognose 1-5D": gpt_1_5d,
+            "ChatGPT Prognose 2-3W": gpt_2_3w,
+
             "Final": final
 
             "SILVER\n"
@@ -46,8 +47,8 @@ def write_daily_summary(results):
             "- Leverage: max 15\n"
             "- Stop-loss: hard -20 %\n"
             "- Ignore all signals below threshold\n\n"
-            "ChatGPT Prognose 1–5D": gpt_1_5d,
-            "ChatGPT Prognose 2–3W": gpt_2_3w,
+            "ChatGPT Prognose 1-5D": gpt_1_5d,
+            "ChatGPT Prognose 2-3W": gpt_2_3w,
             "Final": final
 
             "COPPER\n"
@@ -57,8 +58,8 @@ def write_daily_summary(results):
             "- Leverage: max 5–10\n"
             "- Stop-loss: hard -20 %\n"
             "- No shorts\n\n"
-            "ChatGPT Prognose 1–5D": gpt_1_5d,
-            "ChatGPT Prognose 2–3W": gpt_2_3w,
+            "ChatGPT Prognose 1-5D": gpt_1_5d,
+            "ChatGPT Prognose 2-3W": gpt_2_3w,
             "Final": final
 
             "NATURAL GAS\n"
