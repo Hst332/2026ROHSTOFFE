@@ -25,3 +25,10 @@ def forecast_asset(asset, df, macro_bias):
         "gpt_2_3w": decision["gpt_2_3w"],
         "final": decision["final"],
     }
+def run_all():
+    results = []
+
+    for asset, df, macro_bias in ASSETS:
+        results.append(forecast_asset(asset, df, macro_bias))
+
+    return results
