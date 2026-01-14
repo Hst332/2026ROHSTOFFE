@@ -24,13 +24,23 @@ ASSETS = [
 def forecast_asset(asset, ticker, macro_bias):
     df = yf.download(ticker, period="6mo", interval="1d", progress=False)
 
+    # Last close
     close = round(float(df["Close"].iloc[-1]), 1)
 
-    # Core model
+    # Core model score
     score = model_score(df)
 
-    # Short-term trend model
-    signal, f_1_5, f_2_3 = forecast_trend(df)
+    # Trend forecasts
+    f_1_5 = forecast_trend(df, days=5)
+    f_2_3 = forecast_trend(df, days=15)
+
+    # Aggregate main signal
+    if f_1_5 == "++" and f_2_3 == "++":
+        signal = "LONG"
+    elif f_1_5 == "--" and f_2_3 == "--":
+        signal = "SHORT"
+    else:
+        signal = "NO_TRADE"
 
     # ChatGPT overlay / decision engine
     decision = decide(
