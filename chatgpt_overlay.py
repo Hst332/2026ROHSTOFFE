@@ -2,11 +2,11 @@
 
 def chatgpt_overlay(asset, signal_1_5d, signal_2_3w, macro):
     """
-    returns:
-    chatgpt_1_5d, chatgpt_2_3w, final
+    Returns:
+    gpt_1_5d, gpt_2_3w, final
     """
 
-    # ---- RULE BASE (stabil, kein ML) ----
+    # ---- CHATGPT PROGNOSE (regelbasiert, stabil) ----
     if macro == "STRONG_SUPPORT":
         gpt_1_5d = "OK"
         gpt_2_3w = "OK"
@@ -17,10 +17,10 @@ def chatgpt_overlay(asset, signal_1_5d, signal_2_3w, macro):
         gpt_1_5d = "Nein"
         gpt_2_3w = "Nein"
 
-    # ---- FINAL LOGIC ----
+    # ---- FINAL ENTSCHEIDUNG ----
     if gpt_1_5d == "OK" and gpt_2_3w == "OK":
         final = "Go100"
-    elif "OK" in [gpt_1_5d, gpt_2_3w]:
+    elif gpt_1_5d == "OK" or gpt_2_3w == "OK":
         final = "Go50"
     else:
         final = "NoTrade"
