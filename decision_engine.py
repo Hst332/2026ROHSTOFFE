@@ -1,4 +1,5 @@
 from chatgpt_overlay import chatgpt_overlay
+
 def decide(asset, score):
     if asset == "GOLD":
         if score >= 0.55:
