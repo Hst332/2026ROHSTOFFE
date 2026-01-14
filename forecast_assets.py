@@ -27,7 +27,6 @@ def forecast_asset(name, ticker, unit):
         "gpt_1_5d": gpt_1_5d,
         "gpt_2_3w": gpt_2_3w,
         "final": final,
-    })
-
+    }
 def run_all():
     return [forecast_asset(*a) for a in ASSETS]
