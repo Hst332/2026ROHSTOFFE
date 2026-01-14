@@ -18,14 +18,16 @@ def forecast_asset(name, ticker, unit):
     signal = decide(name, score)
 
     return {
-        "asset": name,
+        "asset": asset,
         "close": close,
-        "unit": unit,
         "score": score,
         "signal": signal,
-        "f_1_5": forecast_trend(df, 5),
-        "f_2_3": forecast_trend(df, 21),
-    }
+        "f_1_5": f_1_5,
+        "f_2_3": f_2_3,
+        "gpt_1_5d": gpt_1_5d,
+        "gpt_2_3w": gpt_2_3w,
+        "final": final,
+    })
 
 def run_all():
     return [forecast_asset(*a) for a in ASSETS]
