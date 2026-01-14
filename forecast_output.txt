@@ -1,28 +1,28 @@
-Run time (UTC): 2026-01-13 19:04:13
-==========================================================================================
-ASSET         CLOSE     SCORE   SIGNAL       1–5D   2–3W
-------------------------------------------------------------------------------------------
-GOLD          4607.9    0.700   LONG_FULL  ++    ++
-SILVER          87.7    0.700   NO_TRADE   ++    ++
-NATURAL GAS      3.4    0.300   SHORT      --    --
-COPPER           6.0    0.700   LONG       ++    ++
-==========================================================================================
+Run time (UTC): 2026-01-14 12:44:33
+==============================================================================================================
+ASSET         CLOSE     SCORE   SIGNAL       1-5D   2-3W   GPT 1-5D   GPT 2-3W   FINAL
+--------------------------------------------------------------------------------------------------------------
+GOLD          4643.7    0.700   LONG_FULL  ++    ++     NA        NA         NoTrade
+SILVER          91.5    0.700   NO_TRADE   ++    ++     NA        NA         NoTrade
+NATURAL GAS      3.3    0.300   SHORT      --    --     NA        NA         NoTrade
+COPPER           6.1    0.700   LONG       ++    ++     NA        NA         NoTrade
+==============================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
 
 GOLD
 - Direction: LONG only
-- Entry: prob_up ≥ 0.53
+- Entry: prob_up >= 0.53
 - Position sizing:
-    0.53 – 0.55 → 50 %
-    ≥ 0.55      → 100 %
-- Holding period: 5–20 trading days
-- Leverage: max 3–5
+    0.53 - 0.55 -> 50 %
+    >= 0.55     -> 100 %
+- Holding period: 5-20 trading days
+- Leverage: max 3-5
 - No short positions
 
 SILVER
 - Direction: LONG only
-- Entry: prob_up ≥ 0.96
+- Entry: prob_up >= 0.96
 - Trades/year: ~12
 - Leverage: max 15
 - Stop-loss: hard -20 %
@@ -30,16 +30,16 @@ SILVER
 
 COPPER
 - Direction: LONG only
-- Entry: prob_up ≥ 0.56
-- Trades/year: ~60–150
-- Leverage: max 5–10
+- Entry: prob_up >= 0.56
+- Trades/year: ~60-150
+- Leverage: max 5-10
 - Stop-loss: hard -20 %
 - No shorts
 
 NATURAL GAS
 - Direction: LONG & SHORT
-- LONG  if prob_up ≥ 0.56
-- SHORT if prob_up ≤ 0.44
+- LONG  if prob_up >= 0.56
+- SHORT if prob_up <= 0.44
 - Otherwise: NO TRADE
 - Leverage: max 10
 - Stop-loss: hard -20 %
