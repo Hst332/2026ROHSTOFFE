@@ -1,3 +1,7 @@
+import yfinance as yf
+from model_core import model_score
+from forecast_utils import forecast_trend
+from decision_engine import trade_signal
 from decision_engine import decide
 
 def forecast_asset(asset, df, macro_bias):
