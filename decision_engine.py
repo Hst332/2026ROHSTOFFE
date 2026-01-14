@@ -1,44 +1,45 @@
-from chatgpt_overlay import chatgpt_overlay
+# decision_engine.py
 
-def decide(asset, score):
-    if asset == "GOLD":
-        if score >= 0.55:
-            return "LONG_FULL"
-        elif score >= 0.53:
-            return "LONG_HALF"
-        else:
-            return "NO_TRADE"
+def decide(asset, score, signal_1_5d, signal_2_3w, macro_bias):
+    """
+    Lightweight rule-based ChatGPT replacement
+    (deterministic & backtest-stable)
+    """
 
-    if asset == "SILVER":
-        if score >= 0.96:
-            return "LONG"
-        else:
-            return "NO_TRADE"
+    # GPT-style interpretation
+    if signal_1_5d == "++":
+        gpt_1_5d = "Bullish"
+    elif signal_1_5d == "--":
+        gpt_1_5d = "Bearish"
+    else:
+        gpt_1_5d = "Neutral"
 
-    if asset == "COPPER":
-        if score >= 0.56:
-            return "LONG"
-        else:
-            return "NO_TRADE"
+    if signal_2_3w == "++":
+        gpt_2_3w = "Bullish"
+    elif signal_2_3w == "--":
+        gpt_2_3w = "Bearish"
+    else:
+        gpt_2_3w = "Neutral"
 
-    if asset == "NATURAL GAS":
-        if score >= 0.56:
-            return "LONG"
-        elif score <= 0.44:
-            return "SHORT"
-        else:
-            return "NO_TRADE"
+    # FINAL decision logic (asset-agnostic baseline)
+    if (
+        score >= 0.55
+        and signal_1_5d == "++"
+        and signal_2_3w == "++"
+    ):
+        final = "LONG"
 
+    elif (
+        score <= 0.45
+        and signal_1_5d == "--"
+        and signal_2_3w == "--"
+    ):
+        final = "SHORT"
 
-    gpt_1_5d, gpt_2_3w, final = chatgpt_overlay(
-        asset=asset,
-        signal_1_5d=signal_1_5d,
-        signal_2_3w=signal_2_3w,
-        macro=macro_bias
-    )
+    else:
+        final = "NO_TRADE"
 
     return {
-        "decision": decision,
         "gpt_1_5d": gpt_1_5d,
         "gpt_2_3w": gpt_2_3w,
         "final": final
