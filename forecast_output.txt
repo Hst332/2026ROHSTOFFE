@@ -1,11 +1,11 @@
-Run time (UTC): 2026-01-21 06:39:15
+Run time (UTC): 2026-01-22 10:39:03
 ==============================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D   2-3W   GPT 1-5D   GPT 2-3W   FINAL
 --------------------------------------------------------------------------------------------------------------
-GOLD          4887.4    0.700   LONG       ++    ++     Bullish   Bullish    LONG
-SILVER          94.8    0.700   LONG       ++    ++     Bullish   Bullish    LONG
-NATURAL GAS      4.3    0.700   LONG       ++    ++     Bullish   Bullish    LONG
-COPPER           5.9    0.700   NO_TRADE   --    ++     Bearish   Bullish    NO_TRADE
+GOLD          4828.6    0.700   NO_TRADE   0.046 0.1163 Neutral   Neutral    NO_TRADE
+SILVER          93.6    0.700   NO_TRADE   0.01830.3339 Neutral   Neutral    NO_TRADE
+NATURAL GAS      5.4    0.700   NO_TRADE   0.72670.4653 Neutral   Neutral    NO_TRADE
+COPPER           5.7    0.656   NO_TRADE   -0.03840.0159 Neutral   Neutral    NO_TRADE
 ==============================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
