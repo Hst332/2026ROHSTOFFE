@@ -70,7 +70,8 @@ def backtest(df, threshold):
     for _, row in df.iterrows():
         val = row["prob_up"]
         prob = float(val.iloc[0] if hasattr(val, "iloc") else val)
-        target = int(row["Target"])
+        val = row["Target"]
+        target = int(val.iloc[0] if hasattr(val, "iloc") else val)
 
         if prob >= threshold:
             # LONG
