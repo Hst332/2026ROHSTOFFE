@@ -86,7 +86,8 @@ def backtest(df, threshold):
     trades = []
 
     for _, row in df.iterrows():
-        prob = float(row["prob_up"])
+        val = row["prob_up"]
+        prob = float(val.iloc[0] if hasattr(val, "iloc") else val)
         target = int(row["Target"])
 
         if prob >= threshold:
