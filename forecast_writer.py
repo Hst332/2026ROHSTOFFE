@@ -9,8 +9,8 @@ def write_daily_summary(results):
         f.write(f"Run time (UTC): {datetime.utcnow():%Y-%m-%d %H:%M:%S}\n")
         f.write("=" * 110 + "\n")
         f.write(
-            "ASSET         CLOSE     SCORE   SIGNAL       1-5D   2-3W   "
-            "GPT 1-5D   GPT 2-3W   FINAL\n"
+            "ASSET         CLOSE     SCORE   SIGNAL       1-5D         2-3W   "
+            "   GPT 1-5D   GPT 2-3W   FINAL\n"
         )
         f.write("-" * 110 + "\n")
 
