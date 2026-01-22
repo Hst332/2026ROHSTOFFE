@@ -1,10 +1,17 @@
 import numpy as np
+import pandas as pd
 
 
 
 
 def model_score(df) -> float:
-    last = float(df["Close"].iloc[-1])
+    close = df["Close"]
+
+    if isinstance(close, pd.DataFrame):
+        last = float(close.iloc[-1, 0])
+    else:
+        last = float(close.iloc[-1])
+
     past = float(df["Close"].iloc[-21])
     r = (last - past) / past
 
