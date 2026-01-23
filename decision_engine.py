@@ -1,3 +1,4 @@
+import numpy as np
 # decision_engine.py
 
 def decide(asset, score, signal_1_5d, signal_2_3w, macro_bias):
