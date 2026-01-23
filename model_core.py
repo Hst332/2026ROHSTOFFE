@@ -1,15 +1,31 @@
 import numpy as np
+import pandas as pd
 
-def compute_score(prices: np.ndarray) -> float:
+def compute_score(prices) -> float:
     """
-    SCORE V2 – no saturation, volatility normalized
-    prices: np.array of daily closes (newest last)
+    SCORE V2 – robust input handling
+    Accepts: np.ndarray | pd.Series | pd.DataFrame
     """
 
-    if len(prices) < 30:
+    # --- input normalization (CRITICAL FIX) ---
+    if isinstance(prices, pd.DataFrame):
+        if "Close" in prices.columns:
+            p = prices["Close"].values
+        else:
+            # fallback: last column
+            p = prices.iloc[:, -1].values
+
+    elif isinstance(prices, pd.Series):
+        p = prices.values
+
+    else:
+        p = np.asarray(prices, dtype=float)
+
+    # --- safety ---
+    if len(p) < 30:
         return 0.50
 
-    p = prices.astype(float)
+    p = p.astype(float)
 
     # returns
     r_20 = (p[-1] - p[-21]) / p[-21]
@@ -23,7 +39,6 @@ def compute_score(prices: np.ndarray) -> float:
     m20 = r_20 / (vol * np.sqrt(20))
     m5  = r_5  / (vol * np.sqrt(5))
 
-    # soft squash (NO HARD CAPS)
     core = (
         0.65 * np.tanh(m20 * 0.8) +
         0.35 * np.tanh(m5  * 1.2)
@@ -33,5 +48,5 @@ def compute_score(prices: np.ndarray) -> float:
     return round(float(score), 3)
 
 
-# ✅ BACKWARD COMPATIBILITY (MODULE LEVEL!)
+# backward compatibility
 model_score = compute_score
