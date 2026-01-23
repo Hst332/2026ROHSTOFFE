@@ -37,6 +37,10 @@ def decide(asset, score, signal_1_5d, signal_2_3w, macro_bias):
 
     else:
         final = "NO_TRADE"
+    print(
+    f"DECISION | score={score:.3f} | "
+    f"signal={signal} | final={final_decision}"
+    )
 
     return {
         "gpt_1_5d": gpt_1_5d,
