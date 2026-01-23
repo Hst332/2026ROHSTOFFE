@@ -5,7 +5,8 @@ def decide(asset, score, signal_1_5d, signal_2_3w, macro_bias):
     Lightweight rule-based ChatGPT replacement
     (deterministic & backtest-stable)
     """
-
+    if np.std(score_history[-10:]) < 1e-3:
+    raise RuntimeError("SCORE STALLED – TRADING HALTED")
     # GPT-style interpretation
     if signal_1_5d == "++":
         gpt_1_5d = "Bullish"
