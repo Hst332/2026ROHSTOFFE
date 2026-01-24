@@ -14,7 +14,7 @@ LOOKBACK = 40          # exakt ausreichend für Score-V2
 HOLD_DAYS = 10         # Silver hält länger
 MIN_ROWS = 500
 
-THRESHOLDS = [0.90, 0.93, 0.95, 0.96, 0.97]
+THRESHOLDS = [0.50, 0.53, 0.55, 0.60, 0.70]
 
 # ==================================================
 # LOAD DATA
