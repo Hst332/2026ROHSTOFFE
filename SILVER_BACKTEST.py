@@ -4,20 +4,21 @@ import pandas as pd
 
 from model_core import model_score
 
-# --------------------------------------------------
-# CONFIG
-# --------------------------------------------------
+# ==================================================
+# CONFIG (Silver-spezifisch)
+# ==================================================
 
 TICKER = "SI=F"
-PERIOD = "6y"          # stabiler als 10y
-HOLD_DAYS = 10         # Silver: etwas länger halten
-MIN_BARS = 40
+PERIOD = "6y"
+LOOKBACK = 40          # exakt ausreichend für Score-V2
+HOLD_DAYS = 10         # Silver hält länger
+MIN_ROWS = 500
 
 THRESHOLDS = [0.90, 0.93, 0.95, 0.96, 0.97]
 
-# --------------------------------------------------
+# ==================================================
 # LOAD DATA
-# --------------------------------------------------
+# ==================================================
 
 print("[START] Silver backtest")
 
@@ -26,35 +27,23 @@ df = yf.download(
     period=PERIOD,
     interval="1d",
     progress=False
-)
-
-df = df.dropna()
+).dropna()
 
 print("Downloaded rows:", len(df))
 
-if len(df) < 500:
+if len(df) < MIN_ROWS:
     raise RuntimeError("Not enough data for Silver backtest")
 
-# --------------------------------------------------
-# BACKTEST LOOP
-# --------------------------------------------------
+# ==================================================
+# BACKTEST LOOP (FIXED LOOKBACK – IMPORTANT)
+# ==================================================
 
 scores = []
 future_returns = []
 
-LOOKBACK = 40  # reicht für Score-V2
-
 for i in range(LOOKBACK, len(df) - HOLD_DAYS):
-    window = df.iloc[i - LOOKBACK:i]
+    window = df.iloc[i - LOOKBACK : i]   # <<< DER ENTSCHEIDENDE FIX
     score = model_score(window)
-
-    entry = df["Close"].iloc[i]
-    exit_ = df["Close"].iloc[i + HOLD_DAYS]
-
-    ret = (exit_ - entry) / entry
-
-    scores.append(score)
-    future_returns.append(ret)
 
     entry = df["Close"].iloc[i]
     exit_ = df["Close"].iloc[i + HOLD_DAYS]
@@ -67,9 +56,9 @@ for i in range(LOOKBACK, len(df) - HOLD_DAYS):
 scores = np.array(scores)
 future_returns = np.array(future_returns)
 
-# --------------------------------------------------
+# ==================================================
 # THRESHOLD EVALUATION
-# --------------------------------------------------
+# ==================================================
 
 rows = []
 
@@ -82,4 +71,24 @@ for th in THRESHOLDS:
         profit = 0.0
     else:
         acc = (future_returns[mask] > 0).mean() * 100
-        profit = f
+        profit = future_returns[mask].sum()
+
+    print(
+        f"TH={th:.2f} | "
+        f"Trades={trades} | "
+        f"Accuracy={acc:.2f}% | "
+        f"Profit={profit:.1f}"
+    )
+
+    rows.append((th, trades, round(acc, 2), round(profit, 1)))
+
+# ==================================================
+# SAVE RESULTS
+# ==================================================
+
+pd.DataFrame(
+    rows,
+    columns=["threshold", "trades", "accuracy_pct", "profit_sum"]
+).to_csv("silver_backtest_results.csv", index=False)
+
+print("[OK] silver_backtest_results.csv written")
