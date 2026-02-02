@@ -1,11 +1,11 @@
-Run time (UTC): 2026-01-30 06:53:02
+Run time (UTC): 2026-02-02 07:04:44
 ==============================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL      ZUSATZINFO
 --------------------------------------------------------------------------------------------------------------
-GOLD            5191.7    0.738   TRADE      0.022    0.1562   Neutral   Neutral    LONG      Gold-Regel aktiv
-SILVER           108.4    0.710   TRADE      -0.058   0.3742   Neutral   Neutral    LONG      Silver-Regel aktiv
-NATURAL GAS        3.9    0.449   NO_TRADE   -0.4312  0.2206   Neutral   Neutral    NO_TRADE  Gas Neutralzone
-COPPER             6.0    0.615   TRADE      0.0051   0.0272   Neutral   Neutral    LONG      Copper-Regel aktiv
+GOLD            5067.5    0.692   TRADE      -0.0024  0.1285   Neutral   Neutral    LONG      Gold-Regel aktiv
+SILVER            98.5    0.615   NO_TRADE   -0.1441  0.2487   Neutral   Neutral    NO_TRADE  Score unter Silver-Entry
+NATURAL GAS        3.7    0.425   TRADE      -0.4748  0.0713   Neutral   Neutral    SHORT     Gas SHORT-Regel
+COPPER             5.6    0.419   NO_TRADE   -0.0384  -0.0636  Neutral   Neutral    NO_TRADE  Score unter Copper-Entry
 ==============================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
