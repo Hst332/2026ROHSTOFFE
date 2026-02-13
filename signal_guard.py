@@ -1,5 +1,4 @@
-"""
-signal_guard.py
+"""signal_guard.py
 
 Data-Safety Guard for trading signals.
 
@@ -44,6 +43,32 @@ def _safe_int(x, default: int = 0) -> int:
         return default
 
 
+def _last_scalar(value):
+    """Convert a Series/ndarray/scalar to a python scalar.
+
+    yfinance (and some pandas operations) can produce MultiIndex columns.
+    Then df["Close"].iloc[-1] may be a *Series* (one value per ticker), not a scalar.
+    This helper makes all those cases safe.
+    """
+    try:
+        # pandas Series -> take first element
+        if isinstance(value, pd.Series):
+            if len(value) == 0:
+                return None
+            value = value.iloc[0]
+
+        # numpy scalar / pandas scalar
+        if hasattr(value, "item") and not isinstance(value, (pd.DataFrame, pd.Series)):
+            try:
+                return value.item()
+            except Exception:
+                return value
+
+        return value
+    except Exception:
+        return None
+
+
 def infer_timeframe_seconds(index: pd.Index, *, fallback_seconds: int = 86400) -> int:
     """Infer bar timeframe from a DateTimeIndex (median delta of last ~50 points)."""
     try:
@@ -53,16 +78,19 @@ def infer_timeframe_seconds(index: pd.Index, *, fallback_seconds: int = 86400) -
         if len(index) < 3:
             return fallback_seconds
 
+        # Use last N deltas to reduce influence of old gaps
         n = min(len(index), 50)
         idx = index[-n:]
         deltas = (idx[1:] - idx[:-1]).to_series().dt.total_seconds().dropna()
         if deltas.empty:
             return fallback_seconds
 
+        # Median is robust against occasional gaps
         tf = int(round(float(deltas.median())))
         if tf <= 0:
             return fallback_seconds
 
+        # Clamp to at least 1 second and at most 7 days to avoid weirdness
         tf = max(1, min(tf, 7 * 86400))
         return tf
     except Exception:
@@ -104,15 +132,25 @@ def guard_dataframe(
 
     rows = len(df)
 
-    missing = [c for c in required_cols if c not in df.columns]
+    # yfinance can return MultiIndex columns (e.g. ('Close','GC=F')).
+    # For existence checks we treat level-0 as the field names.
+    if isinstance(df.columns, pd.MultiIndex):
+        colset = set(df.columns.get_level_values(0))
+    else:
+        colset = set(df.columns)
+
+    # Columns
+    missing = [c for c in required_cols if c not in colset]
     if missing:
         data_ok = False
         reasons.append("MISSING_COLS:" + ",".join(missing))
 
+    # History
     if rows < min_rows:
         data_ok = False
         reasons.append("HISTORY_SHORT")
 
+    # Last bar time
     try:
         last_bar = df.index[-1]
         if isinstance(last_bar, pd.Timestamp):
@@ -136,6 +174,7 @@ def guard_dataframe(
         else:
             last_bar = last_bar.replace(tzinfo=timezone.utc)
 
+    # Timeframe
     tf = timeframe_seconds
     if tf is None:
         tf = infer_timeframe_seconds(df.index)
@@ -143,6 +182,7 @@ def guard_dataframe(
     if tf <= 0:
         tf = 86400
 
+    # Age/Stale
     age_s = _safe_int((now_utc - last_bar.astimezone(timezone.utc)).total_seconds(), 10**9)
     max_stale_s = tf * max_stale_multiplier
     stale = 1 if age_s > max_stale_s else 0
@@ -150,11 +190,14 @@ def guard_dataframe(
         data_ok = False
         reasons.append("STALE_DATA")
 
+    # NaN last row
     nan_last = 0
     for c in critical_last_cols:
-        if c in df.columns and pd.isna(df[c].iloc[-1]):
-            nan_last = 1
-            break
+        if c in df.columns:
+            v = _last_scalar(df[c].iloc[-1])
+            if v is None or bool(pd.isna(v)):
+                nan_last = 1
+                break
     if nan_last:
         data_ok = False
         reasons.append("NAN_LAST_ROW")
