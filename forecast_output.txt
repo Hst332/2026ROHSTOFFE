@@ -1,11 +1,11 @@
-Run time (UTC): 2026-02-13 19:45:16
+Run time (UTC): 2026-02-13 19:46:39
 ================================================================================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL  DATA_OK  LAST_BAR_UTC  AGE_s  ROWS  NAN_LAST  STALE  ZUSATZINFO
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-GOLD          5063.0    0.602   TRADE      0.0024   -0.0033  Neutral   Neutral  LONG             True    2026-02-13 00:00:00  71116   128         0      0  Gold-Regel aktiv
-SILVER          77.9    0.466   NO_TRADE   -0.0503  -0.3227  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71116   128         0      0  Score unter Silver-Entry
-NATURAL GAS      3.2    0.493   NO_TRADE   0.0338   -0.5229  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71116   128         0      0  Gas Neutralzone
-COPPER           5.8    0.453   NO_TRADE   -0.0236  -0.03    Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71116   128         0      0  Score unter Copper-Entry
+GOLD          5062.1    0.602   TRADE      0.0022   -0.0035  Neutral   Neutral  LONG             True    2026-02-13 00:00:00  71199   128         0      0  Gold-Regel aktiv
+SILVER          77.9    0.465   NO_TRADE   -0.0506  -0.3229  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Score unter Silver-Entry
+NATURAL GAS      3.2    0.493   NO_TRADE   0.0331   -0.5232  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Gas Neutralzone
+COPPER           5.8    0.454   NO_TRADE   -0.0234  -0.0297  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Score unter Copper-Entry
 ================================================================================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
