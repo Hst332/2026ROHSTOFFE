@@ -1,12 +1,16 @@
-Run time (UTC): 2026-02-13 19:46:39
-================================================================================================================================================================
-ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL  DATA_OK  LAST_BAR_UTC  AGE_s  ROWS  NAN_LAST  STALE  ZUSATZINFO
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-GOLD          5062.1    0.602   TRADE      0.0022   -0.0035  Neutral   Neutral  LONG             True    2026-02-13 00:00:00  71199   128         0      0  Gold-Regel aktiv
-SILVER          77.9    0.465   NO_TRADE   -0.0506  -0.3229  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Score unter Silver-Entry
-NATURAL GAS      3.2    0.493   NO_TRADE   0.0331   -0.5232  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Gas Neutralzone
-COPPER           5.8    0.454   NO_TRADE   -0.0234  -0.0297  Neutral   Neutral  NO_TRADE         True    2026-02-13 00:00:00  71199   128         0      0  Score unter Copper-Entry
-================================================================================================================================================================
+Run time (UTC): 2026-02-13 19:52:19
+==========================================================================================================================================================================
+ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL           DATA_OK  LAST_BAR_UTC        AGE_s  AGE_h  ROWS  NAN_LAST  STALE  ZUSATZINFO
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GOLD              NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                1000000000  277777.78     0         1      1  ERROR: AttributeError: 'GuardResult' object has no attribute 'last_bar_utc'
+             >>> BLOCKED: ERROR: AttributeError
+SILVER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                1000000000  277777.78     0         1      1  ERROR: AttributeError: 'GuardResult' object has no attribute 'last_bar_utc'
+             >>> BLOCKED: ERROR: AttributeError
+NATURAL GAS       NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                1000000000  277777.78     0         1      1  ERROR: AttributeError: 'GuardResult' object has no attribute 'last_bar_utc'
+             >>> BLOCKED: ERROR: AttributeError
+COPPER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                1000000000  277777.78     0         1      1  ERROR: AttributeError: 'GuardResult' object has no attribute 'last_bar_utc'
+             >>> BLOCKED: ERROR: AttributeError
+==========================================================================================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
 
