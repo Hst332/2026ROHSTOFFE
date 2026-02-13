@@ -1,12 +1,16 @@
-Run time (UTC): 2026-02-13 18:52:05
-==============================================================================================================
-ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL      ZUSATZINFO
---------------------------------------------------------------------------------------------------------------
-GOLD            5053.5    0.599   TRADE      0.0005   -0.0052  Neutral   Neutral    LONG      Gold-Regel aktiv
-SILVER            77.8    0.464   NO_TRADE   -0.0518  -0.3239  Neutral   Neutral    NO_TRADE  Score unter Silver-Entry
-NATURAL GAS        3.3    0.494   NO_TRADE   0.0379   -0.521   Neutral   Neutral    NO_TRADE  Gas Neutralzone
-COPPER             5.8    0.459   NO_TRADE   -0.0216  -0.028   Neutral   Neutral    NO_TRADE  Score unter Copper-Entry
-==============================================================================================================
+Run time (UTC): 2026-02-13 19:26:07
+================================================================================================================================================================
+ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL           DATA_OK  LAST_BAR_UTC         AGE_s  ROWS  NAN_LAST  STALE  ZUSATZINFO
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+GOLD              NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                   1000000000     0         1      1  ERROR: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+             >>> BLOCKED: ERROR: ValueError
+SILVER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                   1000000000     0         1      1  ERROR: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+             >>> BLOCKED: ERROR: ValueError
+NATURAL GAS       NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                   1000000000     0         1      1  ERROR: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+             >>> BLOCKED: ERROR: ValueError
+COPPER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   NA                   1000000000     0         1      1  ERROR: ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+             >>> BLOCKED: ERROR: ValueError
+================================================================================================================================================================
 
 TRADING RULES (FINAL – BACKTEST VALIDATED)
 
