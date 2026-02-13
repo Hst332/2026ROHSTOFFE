@@ -1,9 +1,50 @@
 import yfinance as yf
+import pandas as pd
 
 from model_core import model_score
 from forecast_utils import forecast_trend
 from decision_engine import decide
 from signal_guard import guard_dataframe
+
+
+def _normalize_yfinance_df(df: pd.DataFrame) -> pd.DataFrame:
+    """Make yfinance output compatible with the rest of the code.
+
+    Newer yfinance/pandas combos can return MultiIndex columns like:
+        ('Close','GC=F')
+    which breaks code expecting a simple 'Close' Series.
+    We collapse MultiIndex to the first level and, if duplicates exist,
+    keep the first column for each OHLCV field.
+    """
+    if df is None:
+        return df
+
+    if isinstance(df.columns, pd.MultiIndex):
+        # Keep level 0 (Open/High/Low/Close/Volume/Adj Close)
+        df = df.copy()
+        df.columns = [c[0] if isinstance(c, tuple) else c for c in df.columns]
+        # If we now have duplicate columns, keep the first occurrence
+        if df.columns.duplicated().any():
+            df = df.loc[:, ~df.columns.duplicated()]
+    return df
+
+
+def _last_scalar_from_df(df: pd.DataFrame, col: str):
+    if df is None or len(df) == 0 or col not in df.columns:
+        return None
+    v = df[col].iloc[-1]
+    # If MultiIndex collapse failed, v might still be a Series
+    if isinstance(v, pd.Series):
+        if len(v) == 0:
+            return None
+        v = v.iloc[0]
+    try:
+        return v.item() if hasattr(v, "item") else float(v)
+    except Exception:
+        try:
+            return float(v)
+        except Exception:
+            return None
 
 
 # --------------------------------------------------
@@ -27,12 +68,14 @@ def forecast_asset(asset, ticker, macro_bias):
     # If you switch to intraday (e.g. interval="1m"), the guard will automatically
     # infer the bar timeframe from the index and block stale/NaN data.
     df = yf.download(ticker, period="6mo", interval="1d", progress=False)
+    df = _normalize_yfinance_df(df)
 
     # Hard fail-safe: do NOT compute signals on empty data
     guard = guard_dataframe(
         asset=asset,
         df=df,
-        required_cols=("Open", "High", "Low", "Close", "Volume"),
+        # Volume is not reliably present for all futures symbols on Yahoo.
+        required_cols=("Open", "High", "Low", "Close"),
         critical_last_cols=("Close",),
         min_rows=30,
         timeframe_seconds=None,      # auto-infer
@@ -42,7 +85,7 @@ def forecast_asset(asset, ticker, macro_bias):
 
     # If data is unusable: return a blocked result instead of crashing the whole run
     if not guard.data_ok:
-        close = float(df["Close"].iloc[-1]) if df is not None and len(df) > 0 and "Close" in df.columns else None
+        close = _last_scalar_from_df(df, "Close")
         return {
             "asset": asset,
             "close": round(close, 1) if close is not None else None,
@@ -65,7 +108,8 @@ def forecast_asset(asset, ticker, macro_bias):
         }
 
     # Existing pipeline
-    close = round(df["Close"].iloc[-1].item(), 1)
+    close_val = _last_scalar_from_df(df, "Close")
+    close = round(close_val, 1) if close_val is not None else None
 
     score = model_score(df)
 
