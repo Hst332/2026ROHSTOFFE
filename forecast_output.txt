@@ -1,11 +1,11 @@
-Run time (UTC): 2026-04-20 08:10:44
+Run time (UTC): 2026-04-21 07:53:58
 ==========================================================================================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL           DATA_OK  LAST_BAR_UTC        AGE_s  AGE_h  ROWS  NAN_LAST  STALE  ZUSATZINFO
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GOLD              NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   2026-04-17        288644  80.18   124         0      1  STALE_DATA
-SILVER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   2026-04-17        288644  80.18   124         0      1  STALE_DATA
-NATURAL GAS       NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   2026-04-17        288644  80.18   124         0      1  STALE_DATA
-COPPER            NA    0.000   NO_TRADE   0.0      0.0      NA        NA         NO_TRADE(DATA)   False   2026-04-17        288644  80.18   124         0      1  STALE_DATA
+GOLD          4804.8    0.606   TRADE      0.001    0.0338   Neutral   Neutral    LONG             True    2026-04-21        28437   7.90   125         0      0  Gold-Regel aktiv
+SILVER          79.1    0.607   NO_TRADE   -0.0044  0.0596   Neutral   Neutral    NO_TRADE         True    2026-04-21        28437   7.90   125         0      0  Score unter Silver-Entry
+NATURAL GAS      2.7    0.451   NO_TRADE   0.0176   -0.0791  Neutral   Neutral    NO_TRADE         True    2026-04-21        28437   7.90   125         0      0  Gas Neutralzone
+COPPER           6.0    0.626   TRADE      -0.0062  0.08     Neutral   Neutral    LONG             True    2026-04-21        28437   7.90   125         0      0  Copper-Regel aktiv
 ==========================================================================================================================================================================
 
 SIGNAL ACCURACY (EVALUATED TRADES) – Horizon: 5 Trading Days
