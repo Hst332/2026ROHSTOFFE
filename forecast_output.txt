@@ -1,11 +1,11 @@
-Run time (UTC): 2026-10-09 12:43:45
+Run time (UTC): 2026-10-12 14:39:33
 ==========================================================================================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL           DATA_OK  LAST_BAR_UTC        AGE_s  AGE_h  ROWS  NAN_LAST  STALE  ZUSATZINFO
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GOLD          4210.4    0.443   NO_TRADE   0.0129   -0.0396  Neutral   Neutral    NO_TRADE         True    2026-10-09        45824  12.73   128         0      0  Score unter Gold-Entry
-SILVER          60.8    0.451   NO_TRADE   -0.0006  -0.0759  Neutral   Neutral    NO_TRADE         True    2026-10-09        45824  12.73   128         0      0  Score unter Silver-Entry
-NATURAL GAS      3.1    0.637   TRADE      0.0219   0.1047   Neutral   Neutral    LONG             True    2026-10-09        45825  12.73   128         0      0  Gas LONG-Regel
-COPPER           6.7    0.652   TRADE      0.0171   0.0017   Neutral   Neutral    LONG             True    2026-10-09        45825  12.73   128         0      0  Copper-Regel aktiv
+GOLD          4190.3    0.444   NO_TRADE   0.0008   -0.0425  Neutral   Neutral    NO_TRADE         True    2026-10-12        52773  14.66   127         0      0  Score unter Gold-Entry
+SILVER          60.7    0.423   NO_TRADE   -0.0078  -0.0795  Neutral   Neutral    NO_TRADE         True    2026-10-12        52773  14.66   127         0      0  Score unter Silver-Entry
+NATURAL GAS      3.1    0.615   TRADE      0.0106   0.0614   Neutral   Neutral    LONG             True    2026-10-12        52773  14.66   127         0      0  Gas LONG-Regel
+COPPER           6.8    0.703   TRADE      0.0245   -0.0005  Neutral   Neutral    LONG             True    2026-10-12        52773  14.66   127         0      0  Copper-Regel aktiv
 ==========================================================================================================================================================================
 
 SIGNAL ACCURACY (EVALUATED TRADES) – Horizon: 5 Trading Days
