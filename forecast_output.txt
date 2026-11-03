@@ -1,11 +1,11 @@
-Run time (UTC): 2026-11-02 14:57:32
+Run time (UTC): 2026-11-03 13:45:26
 ==========================================================================================================================================================================
 ASSET         CLOSE     SCORE   SIGNAL       1-5D      2-3W      GPT 1-5D   GPT 2-3W   FINAL           DATA_OK  LAST_BAR_UTC        AGE_s  AGE_h  ROWS  NAN_LAST  STALE  ZUSATZINFO
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-GOLD          3974.4    0.359   NO_TRADE   -0.0246  -0.0486  Neutral   Neutral    NO_TRADE         True    2026-11-02        53851  14.96   127         0      0  Score unter Gold-Entry
-SILVER          50.9    0.295   NO_TRADE   -0.0618  -0.139   Neutral   Neutral    NO_TRADE         True    2026-11-02        53851  14.96   127         0      0  Score unter Silver-Entry
-NATURAL GAS      3.0    0.551   NO_TRADE   0.0938   -0.1014  Neutral   Neutral    NO_TRADE         True    2026-11-02        53851  14.96   127         0      0  Gas Neutralzone
-COPPER           6.5    0.503   NO_TRADE   -0.0122  -0.0205  Neutral   Neutral    NO_TRADE         True    2026-11-02        53852  14.96   127         0      0  Score unter Copper-Entry
+GOLD          3962.5    0.322   NO_TRADE   -0.022   -0.0354  Neutral   Neutral    NO_TRADE         True    2026-11-03        49525  13.76   128         0      0  Score unter Gold-Entry
+SILVER          50.1    0.280   NO_TRADE   -0.0624  -0.0977  Neutral   Neutral    NO_TRADE         True    2026-11-03        49525  13.76   128         0      0  Score unter Silver-Entry
+NATURAL GAS      2.9    0.519   NO_TRADE   0.0334   -0.0897  Neutral   Neutral    NO_TRADE         True    2026-11-03        49526  13.76   128         0      0  Gas Neutralzone
+COPPER           6.4    0.376   NO_TRADE   -0.0305  -0.0261  Neutral   Neutral    NO_TRADE         True    2026-11-03        49526  13.76   128         0      0  Score unter Copper-Entry
 ==========================================================================================================================================================================
 
 SIGNAL ACCURACY (EVALUATED TRADES) – Horizon: 5 Trading Days
